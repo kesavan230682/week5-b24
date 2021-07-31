@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>DOM manipulation notes</title>
+</head>
+<body>
+  <h2>DOM Manipulation</h2>
+  <input type="text" id="username">
+  <button onclick="buttonClicked()" id="primary">Click me!</button>
+  
+  <p id="message"></p>
+  <hr>
+  <input type="text" id="itemname"><button onclick="addPressed()">Add new Item</button>
+  <ul id="myList">
+
+  </ul>
+
+
+  <script type="text/javascript">
+
+    function addPressed(){
+     
+      var newItem = document.getElementById("itemname").value;
+     
+      var newLi = document.createElement("li");
+     
+      newLi.innerHTML = newItem;
+     
+      document.getElementById("myList").appendChild(newLi);
+
+     
+      var newButton = document.createElement("button");
+      newButton.innerHTML = "Delete"
+
+      newLi.appendChild(newButton);
+
+      newLi.addEventListener('click', function(){
+        document.getElementById("myList").removeChild(newLi); 
+      })
+
+
+
+    }
+    function buttonClicked(){ 
+      var name = document.getElementById("username").value;
+      // alert("Hello "+name);
+      document.getElementById("message").innerHTML = "Hello "+name;
+    }
+
+    function activatePressed(){
+     
+      if ( !document.getElementById("primary").disabled){
+        // I am going to deactivate it...
+      document.getElementById("primary").setAttribute("disabled",true);
+      document.getElementById("secondary").innerHTML = "Activate the button"
+    }
+    else {
+    
+      document.getElementById("primary").removeAttribute("disabled");
+      document.getElementById("secondary").innerHTML = "Deactivate the button"
+    }
+    }
+  </script>
+
+</body>
+</html>
